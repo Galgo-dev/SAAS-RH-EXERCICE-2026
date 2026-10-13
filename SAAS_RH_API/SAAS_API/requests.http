@@ -17,3 +17,36 @@ GET {{base}}/api/interviews/slots?date=15-10-2026
 
 ### Date manquante (400 attendu)
 GET {{base}}/api/interviews/slots
+
+### Parsing d'un CV en texte : Jean Dupont (score > 80 attendu)
+POST {{base}}/api/candidates/parse
+Content-Type: application/json
+
+{
+  "texte": "Jean Dupont - Développeur Fullstack & Data\nEmail: jean.dupont@email.com | Tél: 06 12 34 56 78\nRésumé: Développeur passionné avec 6 ans d'expérience en Python et JavaScript.\nExpérience:\n- 2021 - Présent: Senior Python Dev chez TechCorp. Développement d'API FastAPI, intégration de modèles LLM avec Pydantic et ChromaDB. Mise en place de pipelines CI/CD Docker.\n- 2018 - 2021: Développeur Backend chez SoftSolutions. Django, PostgreSQL, Redis.\nFormation: Master en Informatique, Université de Lyon (2018).\nCompétences: Python, FastAPI, Docker, ChromaDB, OpenAI API, SQL, Git, React."
+}
+
+### Parsing d'un CV en texte : Sophie Martin (score < 40 attendu)
+POST {{base}}/api/candidates/parse
+Content-Type: application/json
+
+{
+  "texte": "Sophie Martin - Développeuse Front-End Junior\nEmail: sophie.m@email.com | Tél: 06 98 76 54 32\nRésumé: Développeuse Web spécialisée en interfaces réactives avec 1 an d'expérience.\nExpérience:\n- 2023 - Présent: Développeuse Front-End chez WebAgency. React.js, TailwindCSS, HTML/CSS.\nFormation: Bootcamp Développement Web (2023).\nCompétences: JavaScript, React, CSS, HTML, Git. Notion de Python de base."
+}
+
+### Parsing d'un CV au format PDF (remplacer le chemin du fichier)
+POST {{base}}/api/candidates/parse
+Content-Type: multipart/form-data; boundary=frontiere
+
+--frontiere
+Content-Disposition: form-data; name="cv"; filename="cv.pdf"
+Content-Type: application/pdf
+
+< ./cv.pdf
+--frontiere--
+
+### Parsing sans CV (400 attendu)
+POST {{base}}/api/candidates/parse
+Content-Type: application/json
+
+{}
