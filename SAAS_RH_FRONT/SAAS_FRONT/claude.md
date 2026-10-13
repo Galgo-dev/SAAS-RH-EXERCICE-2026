@@ -36,3 +36,4 @@
 
 ## Règles du projet
 - Utilise le clean code
+- Ne lis jamais le .env, nis le modifié

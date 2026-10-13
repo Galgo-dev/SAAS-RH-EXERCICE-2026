@@ -1,3 +1,4 @@
 node_modules/
 .env
 .claude/
+SAAS_RH_API/SAAS_API/.vectra-index/

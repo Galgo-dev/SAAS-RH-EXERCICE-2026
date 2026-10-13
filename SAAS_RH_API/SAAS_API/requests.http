@@ -50,3 +50,21 @@ POST {{base}}/api/candidates/parse
 Content-Type: application/json
 
 {}
+
+### RAG : RTT et CET (réponse sourcée attendue, rh_doc_02)
+POST {{base}}/api/rag/ask
+Content-Type: application/json
+
+{ "question": "Combien de jours de RTT ai-je droit et puis-je les placer sur un CET ?" }
+
+### RAG : prime de naissance (refus attendu, aucune source)
+POST {{base}}/api/rag/ask
+Content-Type: application/json
+
+{ "question": "Quelle est la prime de naissance accordée par l'entreprise ?" }
+
+### RAG : question vide (400 attendu)
+POST {{base}}/api/rag/ask
+Content-Type: application/json
+
+{ "question": "" }
