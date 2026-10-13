@@ -1,5 +1,7 @@
 import express from "express";
+import candidatesRouter from "./routes/candidates.js";
 import interviewsRouter from "./routes/interviews.js";
+import ragRouter from "./routes/rag.js";
 
 const app = express();
 
@@ -9,13 +11,18 @@ app.get("/api/health", (req, res) => {
   res.json({ statut: "ok" });
 });
 
+app.use("/api/candidates", candidatesRouter);
 app.use("/api/interviews", interviewsRouter);
+app.use("/api/rag", ragRouter);
 
 app.use((req, res) => {
   res.status(404).json({ erreur: "Route introuvable" });
 });
 
 app.use((err, req, res, next) => {
+  if (err.name === "MulterError") {
+    return res.status(400).json({ erreur: `Fichier refusé : ${err.message}` });
+  }
   console.error(err);
   res.status(500).json({ erreur: "Erreur interne du serveur" });
 });
