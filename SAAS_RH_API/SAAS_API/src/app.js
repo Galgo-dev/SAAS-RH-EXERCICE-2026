@@ -1,4 +1,5 @@
 import express from "express";
+import agentRouter from "./routes/agent.js";
 import candidatesRouter from "./routes/candidates.js";
 import interviewsRouter from "./routes/interviews.js";
 import ragRouter from "./routes/rag.js";
@@ -11,6 +12,7 @@ app.get("/api/health", (req, res) => {
   res.json({ statut: "ok" });
 });
 
+app.use("/api/agent", agentRouter);
 app.use("/api/candidates", candidatesRouter);
 app.use("/api/interviews", interviewsRouter);
 app.use("/api/rag", ragRouter);
@@ -20,6 +22,9 @@ app.use((req, res) => {
 });
 
 app.use((err, req, res, next) => {
+  if (err.type === "entity.parse.failed") {
+    return res.status(400).json({ erreur: "Corps de requête JSON invalide" });
+  }
   if (err.name === "MulterError") {
     return res.status(400).json({ erreur: `Fichier refusé : ${err.message}` });
   }

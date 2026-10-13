@@ -68,3 +68,31 @@ POST {{base}}/api/rag/ask
 Content-Type: application/json
 
 { "question": "" }
+
+### Agent : recherche puis réservation (flux SSE)
+POST {{base}}/api/agent/chat
+Content-Type: application/json
+
+{
+  "messages": [
+    { "role": "user", "content": "Trouve-moi un créneau le 2026-10-15 pour réserver un entretien avec Jean Dupont (jean.dupont@email.com)" }
+  ]
+}
+
+### Agent : suite de conversation
+POST {{base}}/api/agent/chat
+Content-Type: application/json
+
+{
+  "messages": [
+    { "role": "user", "content": "Quels créneaux sont libres le 2026-10-16 ?" },
+    { "role": "assistant", "content": "Le 2026-10-16, les créneaux libres sont 10:00 et 15:00." },
+    { "role": "user", "content": "Réserve 15:00 pour Sophie Martin (sophie.m@email.com)" }
+  ]
+}
+
+### Agent : corps invalide (400 attendu)
+POST {{base}}/api/agent/chat
+Content-Type: application/json
+
+{ "messages": [] }
