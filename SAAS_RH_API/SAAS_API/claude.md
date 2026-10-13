@@ -1,8 +1,8 @@
 # CLAUDE.md — rh-copilot (exercice 2 jours)
 - Front : React + Vite, JavaScript (pas de TypeScript), Axios. API : Node.js 20, Express, Zod.
 - Périmètre strict : uniquement les 4 endpoints de l'énoncé. Base vectorielle : Vectra (fichiers locaux). Pas d'autre BDD, pas d'auth, pas de Docker.
-- Données en mémoire dans api/src/data/ (copiées de l'énoncé, ne pas les modifier).
-- Tout appel LLM passe par api/src/llm.js. Température 0 pour le parsing et le RAG.
+- Données en mémoire dans src/data/ (copiées de l'énoncé, ne pas les modifier).
+- Tout appel LLM passe par src/llm.js. Température 0 pour le parsing et le RAG.
 - Code simple et lisible, pas d'abstraction inutile.
 - Fin de tâche : lancer la requête correspondante de requests.http et montrer le résultat.
 
