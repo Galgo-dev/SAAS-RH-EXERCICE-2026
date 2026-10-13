@@ -1,4 +1,5 @@
 import express from "express";
+import interviewsRouter from "./routes/interviews.js";
 
 const app = express();
 
@@ -7,6 +8,8 @@ app.use(express.json());
 app.get("/api/health", (req, res) => {
   res.json({ statut: "ok" });
 });
+
+app.use("/api/interviews", interviewsRouter);
 
 app.use((req, res) => {
   res.status(404).json({ erreur: "Route introuvable" });

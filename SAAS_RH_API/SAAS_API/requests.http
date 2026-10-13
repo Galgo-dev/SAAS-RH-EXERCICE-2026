@@ -2,3 +2,18 @@
 
 ### Santé de l'API
 GET {{base}}/api/health
+
+### Créneaux disponibles le 15 octobre 2026
+GET {{base}}/api/interviews/slots?date=2026-10-15
+
+### Créneaux disponibles le 16 octobre 2026
+GET {{base}}/api/interviews/slots?date=2026-10-16
+
+### Date sans créneau (liste vide attendue)
+GET {{base}}/api/interviews/slots?date=2026-10-20
+
+### Date invalide (400 attendu)
+GET {{base}}/api/interviews/slots?date=15-10-2026
+
+### Date manquante (400 attendu)
+GET {{base}}/api/interviews/slots
