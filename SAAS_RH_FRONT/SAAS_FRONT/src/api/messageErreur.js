@@ -1,4 +1,4 @@
-const MESSAGE_API_INJOIGNABLE = "Impossible de joindre l'API. Vérifiez qu'elle est démarrée."
+export const MESSAGE_API_INJOIGNABLE = "Impossible de joindre l'API. Vérifiez qu'elle est démarrée."
 
 // Transforme une erreur Axios en message lisible pour l'utilisateur.
 export function messageErreur(error) {
