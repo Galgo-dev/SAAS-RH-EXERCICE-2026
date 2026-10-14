@@ -46,7 +46,13 @@ router.post("/chat", async (req, res) => {
     await executerAgent(resultat.data.messages, emit, controller.signal);
   } catch (err) {
     console.error(err);
-    emit("error", { message: "Erreur interne de l'agent" });
+    // 429 renvoyé par le LLM : le front affiche un message dédié grâce au code.
+    emit(
+      "error",
+      err.status === 429
+        ? { message: "Quota du modèle atteint", code: "QUOTA_LLM" }
+        : { message: "Erreur interne de l'agent" },
+    );
   }
 
   res.end();

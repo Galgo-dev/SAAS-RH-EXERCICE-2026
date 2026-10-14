@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { ErreurHttp, envoyerMessages } from '../api/chat.api.js'
-import { MESSAGE_API_INJOIGNABLE } from '../api/messageErreur.js'
+import { MESSAGE_API_INJOIGNABLE, MESSAGE_QUOTA_LLM } from '../api/messageErreur.js'
 
 // Limites de l'API : 20 messages au plus, 2000 caractères par message.
 const MAX_MESSAGES = 20
@@ -23,6 +23,7 @@ function construireHistorique(messages) {
 }
 
 function messageErreurChat(error) {
+  if (error instanceof ErreurHttp && error.statut === 429) return MESSAGE_QUOTA_LLM
   const apiInjoignable = !(error instanceof ErreurHttp) || [502, 503, 504].includes(error.statut)
   return apiInjoignable ? MESSAGE_API_INJOIGNABLE : error.message
 }
@@ -74,7 +75,8 @@ function useChatAgent() {
           }
         })
       } else if (nom === 'error') {
-        modifierAssistant((m) => ({ ...m, erreur: donnees.message }))
+        const message = donnees.code === 'QUOTA_LLM' ? MESSAGE_QUOTA_LLM : donnees.message
+        modifierAssistant((m) => ({ ...m, erreur: message }))
       }
     }
 
