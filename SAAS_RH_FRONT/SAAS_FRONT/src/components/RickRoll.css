@@ -1,0 +1,19 @@
+.rickroll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  margin: auto;
+  text-align: center;
+}
+
+.rickroll__gif {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+}
+
+.rickroll__texte {
+  margin: 0;
+  font-weight: 600;
+}

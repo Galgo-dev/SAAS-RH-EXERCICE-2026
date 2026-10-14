@@ -6,6 +6,9 @@ import { MESSAGE_API_INJOIGNABLE } from '../api/messageErreur.js'
 const MAX_MESSAGES = 20
 const MAX_CARACTERES = 2000
 
+// Œuf de Pâques : ce nom dans un message déclenche le rickroll, sans appel à l'API.
+const DECLENCHEUR_RICKROLL = /rick\s*astley/i
+
 function lireArguments(texte) {
   try {
     return JSON.parse(texte)
@@ -30,6 +33,7 @@ function messageErreurChat(error) {
 function useChatAgent() {
   const [messages, setMessages] = useState([])
   const [enCours, setEnCours] = useState(false)
+  const [rickroll, setRickroll] = useState(false)
   const prochainId = useRef(0)
   const controleur = useRef(null)
 
@@ -37,6 +41,13 @@ function useChatAgent() {
   useEffect(() => () => controleur.current?.abort(), [])
 
   async function envoyer(texte) {
+    // Le message n'est ni ajouté à la conversation ni envoyé à l'API : le gif remplace la conversation.
+    if (DECLENCHEUR_RICKROLL.test(texte)) {
+      setRickroll(true)
+      return
+    }
+    setRickroll(false)
+
     const idAssistant = ++prochainId.current
     const messageUtilisateur = { id: ++prochainId.current, role: 'user', contenu: texte, outils: [] }
     const messageAssistant = { id: idAssistant, role: 'assistant', contenu: '', outils: [], erreur: null }
@@ -97,9 +108,14 @@ function useChatAgent() {
     controleur.current = null
     setMessages([])
     setEnCours(false)
+    setRickroll(false)
   }
 
-  return { messages, enCours, envoyer, reinitialiser }
+  function fermerRickroll() {
+    setRickroll(false)
+  }
+
+  return { messages, enCours, rickroll, envoyer, reinitialiser, fermerRickroll }
 }
 
 export default useChatAgent
