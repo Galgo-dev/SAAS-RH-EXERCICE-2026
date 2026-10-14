@@ -1,0 +1,38 @@
+.message-chat {
+  max-width: 92%;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius);
+}
+
+.message-chat--user {
+  align-self: flex-end;
+  background: var(--color-primary-soft);
+}
+
+.message-chat--assistant {
+  align-self: flex-start;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+}
+
+.message-chat__auteur {
+  margin: 0 0 var(--space-1);
+  font-size: var(--font-size-small);
+  font-weight: 700;
+  color: var(--color-text-muted);
+}
+
+.message-chat__texte {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.message-chat__attente {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+.message-chat .message-erreur {
+  margin: var(--space-2) 0 0;
+}

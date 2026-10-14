@@ -1,0 +1,19 @@
+.chat__actions {
+  margin-bottom: var(--space-3);
+}
+
+.chat__liste {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-height: 12rem;
+  max-height: 60vh;
+  margin-bottom: var(--space-3);
+  overflow-y: auto;
+}
+
+.chat__vide {
+  margin: auto;
+  color: var(--color-text-muted);
+  text-align: center;
+}
