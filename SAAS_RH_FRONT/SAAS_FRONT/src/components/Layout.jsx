@@ -1,4 +1,5 @@
 import { NavLink, Outlet } from 'react-router-dom'
+import LogoFeuille from './LogoFeuille.jsx'
 import './Layout.css'
 
 const LIENS = [
@@ -12,7 +13,10 @@ function Layout() {
     <>
       <header className="layout-header">
         <div className="layout-header__contenu">
-          <p className="layout-header__titre">RH Copilot</p>
+          <div className="layout-header__marque">
+            <LogoFeuille />
+            <p className="layout-header__titre">RH Copilot</p>
+          </div>
           <nav aria-label="Navigation principale">
             <ul className="layout-nav">
               {LIENS.map(({ chemin, libelle }) => (

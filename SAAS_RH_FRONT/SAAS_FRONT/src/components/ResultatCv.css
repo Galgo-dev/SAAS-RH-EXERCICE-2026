@@ -75,7 +75,7 @@
 .resultat-cv__competences li {
   padding: var(--space-1) var(--space-3);
   background: var(--color-primary-soft);
-  border-radius: 999px;
+  border-radius: var(--radius-pilule);
 }
 
 @media (min-width: 48rem) {
