@@ -58,7 +58,7 @@ export async function repondreQuestion(question) {
   let completion;
   try {
     completion = await appelerLLM({
-      temperature: 0,
+      temperature: 0.5,
       response_format: FORMAT_REPONSE,
       messages: [
         { role: "system", content: PROMPT_SYSTEME },
