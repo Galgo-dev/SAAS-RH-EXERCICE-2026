@@ -1,0 +1,81 @@
+/* Éléments d'interface partagés par les pages. */
+.carte {
+  padding: var(--space-3);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.champ {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-bottom: var(--space-3);
+}
+
+.champ__libelle {
+  font-weight: 600;
+}
+
+.champ__aide {
+  margin: 0;
+  font-size: var(--font-size-small);
+  color: var(--color-text-muted);
+}
+
+.champ__saisie {
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.champ__saisie:disabled {
+  background: var(--color-bg);
+  color: var(--color-text-muted);
+}
+
+.bouton {
+  padding: var(--space-2) var(--space-4);
+  font-weight: 600;
+  color: #fff;
+  background: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.bouton:hover:not(:disabled) {
+  background: var(--color-primary-dark);
+}
+
+.bouton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.bouton--secondaire {
+  color: var(--color-primary);
+  background: var(--color-surface);
+}
+
+.bouton--secondaire:hover:not(:disabled) {
+  color: #fff;
+}
+
+.message-erreur {
+  margin: var(--space-3) 0;
+  padding: var(--space-2) var(--space-3);
+  color: var(--color-danger);
+  background: #fdecea;
+  border: 1px solid var(--color-danger);
+  border-radius: var(--radius);
+}
+
+.liste-simple {
+  margin: 0;
+  padding-left: var(--space-4);
+}
