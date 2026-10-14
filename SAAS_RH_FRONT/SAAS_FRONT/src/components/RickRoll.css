@@ -17,3 +17,8 @@
   margin: 0;
   font-weight: 600;
 }
+
+.rickroll__lecteur {
+  width: 100%;
+  max-width: 20rem;
+}
