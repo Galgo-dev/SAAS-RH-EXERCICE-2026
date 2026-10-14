@@ -30,7 +30,6 @@
 - **Pages** : assemblent layouts et composants ; les appels de données passent par les hooks.
 - **Contrôle d'accès** : les routes protégées passent par `ProtectedRoute` / `RoleRoute` ; l'API reste la source de vérité pour les droits.
 - **Variables d'environnement** : préfixe `VITE_` obligatoire, lues uniquement dans `api/axiosClient.js`.
-- **Accessibilité** : police de base ≥ 18 px, boutons larges, contrastes élevés, libellés explicites sur tous les champs (public d'environ 58 ans).
 - **Responsive** : conception mobile d'abord, valeurs communes centralisées dans `styles/variables.css`.
 
 

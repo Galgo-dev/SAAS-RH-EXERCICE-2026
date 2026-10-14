@@ -39,6 +39,7 @@
 }
 
 .bouton {
+  min-height: 2.75rem;
   padding: var(--space-2) var(--space-4);
   font-weight: 600;
   color: #fff;
