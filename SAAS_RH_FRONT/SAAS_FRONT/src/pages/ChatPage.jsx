@@ -1,11 +1,12 @@
 import { useEffect, useRef } from 'react'
 import FormulaireMessage from '../components/FormulaireMessage.jsx'
 import MessageChat from '../components/MessageChat.jsx'
+import RickRoll from '../components/RickRoll.jsx'
 import useChatAgent from '../hooks/useChatAgent.js'
 import './ChatPage.css'
 
 function ChatPage() {
-  const { messages, enCours, envoyer, reinitialiser } = useChatAgent()
+  const { messages, enCours, rickroll, envoyer, reinitialiser, fermerRickroll } = useChatAgent()
   const liste = useRef(null)
 
   // Garde le dernier message visible pendant que la réponse arrive.
@@ -26,23 +27,29 @@ function ChatPage() {
           type="button"
           className="bouton bouton--secondaire"
           onClick={reinitialiser}
-          disabled={messages.length === 0}
+          disabled={messages.length === 0 && !rickroll}
         >
           Nouvelle conversation
         </button>
       </div>
 
       <div ref={liste} className="chat__liste carte" role="log" aria-live="polite" aria-label="Conversation">
-        {messages.length === 0 && (
-          <p className="chat__vide">Aucun message pour le moment. Écrivez à l'agent ci-dessous.</p>
+        {rickroll ? (
+          <RickRoll onRetour={fermerRickroll} />
+        ) : (
+          <>
+            {messages.length === 0 && (
+              <p className="chat__vide">Aucun message pour le moment. Écrivez à l'agent ci-dessous.</p>
+            )}
+            {messages.map((message, index) => (
+              <MessageChat
+                key={message.id}
+                message={message}
+                enAttente={enCours && index === messages.length - 1}
+              />
+            ))}
+          </>
         )}
-        {messages.map((message, index) => (
-          <MessageChat
-            key={message.id}
-            message={message}
-            enAttente={enCours && index === messages.length - 1}
-          />
-        ))}
       </div>
 
       <FormulaireMessage onSubmit={envoyer} enCours={enCours} />

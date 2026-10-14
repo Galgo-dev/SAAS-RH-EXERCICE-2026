@@ -2,3 +2,6 @@ node_modules/
 .env
 .claude/
 SAAS_RH_API/SAAS_API/.vectra-index/
+
+# Musique du rickroll : fichier protégé, gardé en local
+SAAS_RH_FRONT/SAAS_FRONT/public/Rick Astley - Never Gonna Give You Up*.mp3
