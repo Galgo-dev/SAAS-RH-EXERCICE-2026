@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import './ResultatCv.css'
 
 // Le niveau est aussi écrit en toutes lettres : la couleur seule ne suffit pas.
@@ -9,9 +10,19 @@ function niveauScore(score) {
 
 function ResultatCv({ analyse }) {
   const niveau = niveauScore(analyse.score)
+  const section = useRef(null)
+
+  // Le composant n'existe que lorsqu'une analyse est terminée : on amène le résultat à l'écran.
+  useEffect(() => {
+    const sansAnimation = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    section.current.scrollIntoView({
+      behavior: sansAnimation ? 'auto' : 'smooth',
+      block: 'start',
+    })
+  }, [])
 
   return (
-    <section className="carte resultat-cv" aria-labelledby="titre-resultat">
+    <section ref={section} className="carte resultat-cv" aria-labelledby="titre-resultat">
       <header className="resultat-cv__entete">
         <div>
           <h2 id="titre-resultat" className="resultat-cv__nom">
