@@ -16,6 +16,7 @@
 
 .champ__libelle {
   font-weight: 600;
+  color: var(--color-primary-dark);
 }
 
 .champ__aide {
@@ -29,8 +30,12 @@
   padding: var(--space-2) var(--space-3);
   color: var(--color-text);
   background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-small);
+}
+
+.champ__saisie:focus {
+  border-color: var(--color-primary);
 }
 
 .champ__saisie:disabled {
@@ -42,15 +47,16 @@
   min-height: 2.75rem;
   padding: var(--space-2) var(--space-4);
   font-weight: 600;
-  color: #fff;
+  color: var(--color-on-primary);
   background: var(--color-primary);
   border: 1px solid var(--color-primary);
-  border-radius: var(--radius);
+  border-radius: var(--radius-pilule);
   cursor: pointer;
 }
 
 .bouton:hover:not(:disabled) {
   background: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
 }
 
 .bouton:disabled {
@@ -64,19 +70,38 @@
 }
 
 .bouton--secondaire:hover:not(:disabled) {
-  color: #fff;
+  color: var(--color-primary-dark);
+  background: var(--color-primary-soft);
+  border-color: var(--color-primary);
 }
 
 .message-erreur {
   margin: var(--space-3) 0;
   padding: var(--space-2) var(--space-3);
   color: var(--color-danger);
-  background: #fdecea;
+  background: var(--color-danger-soft);
   border: 1px solid var(--color-danger);
-  border-radius: var(--radius);
+  border-radius: var(--radius-small);
 }
 
 .liste-simple {
   margin: 0;
   padding-left: var(--space-4);
+}
+
+@media (min-width: 48rem) {
+  .carte {
+    padding: var(--space-4);
+  }
+}
+
+/* Transitions douces, désactivées pour les personnes qui réduisent les animations. */
+@media (prefers-reduced-motion: no-preference) {
+  .bouton,
+  .champ__saisie {
+    transition:
+      background-color var(--transition),
+      border-color var(--transition),
+      color var(--transition);
+  }
 }
