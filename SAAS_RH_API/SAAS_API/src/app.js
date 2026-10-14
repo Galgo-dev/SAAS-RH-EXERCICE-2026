@@ -28,6 +28,10 @@ app.use((err, req, res, next) => {
   if (err.name === "MulterError") {
     return res.status(400).json({ erreur: `Fichier refusé : ${err.message}` });
   }
+  // 429 renvoyé par le LLM : quota de tokens ou de requêtes atteint.
+  if (err.status === 429) {
+    return res.status(429).json({ erreur: "Quota du modèle atteint", code: "QUOTA_LLM" });
+  }
   console.error(err);
   res.status(500).json({ erreur: "Erreur interne du serveur" });
 });
