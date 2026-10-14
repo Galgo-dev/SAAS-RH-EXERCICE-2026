@@ -1,0 +1,29 @@
+.exemples-question {
+  margin-bottom: var(--space-3);
+}
+
+.exemples-question__liste {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.exemples-question__bouton {
+  width: 100%;
+  font-weight: 400;
+  text-align: left;
+}
+
+@media (min-width: 48rem) {
+  .exemples-question__liste {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .exemples-question__bouton {
+    width: auto;
+  }
+}
